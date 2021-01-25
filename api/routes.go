@@ -5,13 +5,18 @@ import (
 	users "github.com/igorariza/Go-BackendMySQl/users/web"
 )
 
-func routes(services *users.UserHTTPService) *chi.Mux {
-	r := chi.NewMux()
+func routesCreateUser(services *users.UserCreateHTTPService, r *chi.Mux) {
 
-	//r.Get("/users", services.GetUsersHandler)
-	//r.Post("/users", services.CreateUsersHandler)
+	// r.Get("/users", services.GetUsersHandler)
+	r.Post("/users", services.CreateUsersHandler)
+	r.Get("/users/{userID}", services.GetUsersByIDHandler)
+
+}
+
+func routesLoginUser(services *users.LoginUserHTTPService, r *chi.Mux) {
+
+	r.Post("/login", services.LoginUsersHandler)
+	// r.Post("/users", services.CreateUsersHandler)
 	// r.Get("/users/{userID}", services.GetUsersByIDHandler)
-	r.Get("/users/{email}", services.GetUsersByEmailHandler)
 
-	return r
 }

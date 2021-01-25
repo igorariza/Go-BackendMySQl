@@ -30,3 +30,11 @@ func Duplicate(result interface{}, status int) *ResponseAPI {
 		Result:  result,
 	}
 }
+
+func NoContent(result interface{}, status int) *ResponseAPI {
+	return &ResponseAPI{
+		Success: false,
+		Status:  status,
+		Result:  result,
+	}
+}
