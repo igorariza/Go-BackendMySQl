@@ -1,8 +1,9 @@
 package users
 
+//User comment generic
 type User struct {
 	ID         int64  `json:"idUser"`
-	DocumentId string `json:"document_id"`
+	DocumentID string `json:"document_id"`
 	FirstName  string `json:"first_name"`
 	LastName   string `json:"last_name"`
 	Email      string `json:"email"`
@@ -10,17 +11,19 @@ type User struct {
 	Address    string `json:"address"`
 	Photo      string `json:"photo"`
 	CreatedAt  string `json:"created_at"`
-	TypeId     string `json:"type_id"`
+	TypeID     string `json:"type_id"`
 	DateBirth  string `json:"date_birth"`
 	LastAccess string `json:"last_access"`
 	Rh         string `json:"rh"`
-	IdSede     string `json:"idSede"`
+	IDSede     string `json:"idSede"`
 	IsActive   string `json:"is_active"`
+	NameSede   string `json:"name_sede"`
 }
 
+//CreateUserCMD comment generic
 type CreateUserCMD struct {
 	ID         int64  `json:"idUser"`
-	DocumentId string `json:"document_id"`
+	DocumentID string `json:"document_id"`
 	FirstName  string `json:"first_name"`
 	LastName   string `json:"last_name"`
 	Email      string `json:"email"`
@@ -29,10 +32,16 @@ type CreateUserCMD struct {
 	Address    string `json:"address"`
 	Photo      string `json:"photo"`
 	CreatedAt  string `json:"created_at"`
-	TypeId     string `json:"type_id"`
+	TypeID     string `json:"type_id"`
 	DateBirth  string `json:"date_birth"`
 	LastAccess string `json:"last_access"`
 	Rh         string `json:"rh"`
-	IdSede     string `json:"idSede"`
+	IDSede     string `json:"idSede"`
 	IsActive   string `json:"is_active"`
+}
+
+//LoginUser comment generic
+type LoginUser struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
