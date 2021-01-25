@@ -10,7 +10,7 @@ CREATE TABLE `Sede` (
 	`idSede`	INT	AUTO_INCREMENT,
   `idInstitution`	INT	, -- relationship Institution
 	`code_sede`	VARCHAR(100),	
-	`name`	VARCHAR(80),	
+	`name_sede`	VARCHAR(80),	
 PRIMARY KEY (`idSede`),
 FOREIGN KEY (`idInstitution`) 
 REFERENCES Institution(`idInstitution`)) ENGINE=InnoDB  
@@ -73,3 +73,10 @@ VALUES
     "is_active": ""
 }	
 -- SELECT * from Users WHERE email ='adminsige@gmail.com'
+
+-- QUERY
+
+SELECT Users.idUser, Users.document_id, Users.first_name, Users.last_name, Users.email, Users.password, Users.phone, Users.address, Users.photo, Users.created_at, Users.type_id, Users.date_birth, Users.rh, Users.idSede, Users.is_active, Sede.name_sede 
+FROM Users
+INNER JOIN Sede ON Sede.idSede = Users.idSede
+WHERE Users.email = "adminsige@gmail.com"

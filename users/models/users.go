@@ -17,6 +17,7 @@ type User struct {
 	Rh         string `json:"rh"`
 	IDSede     string `json:"idSede"`
 	IsActive   string `json:"is_active"`
+	NameSede   string `json:"name_sede"`
 }
 
 //CreateUserCMD comment generic

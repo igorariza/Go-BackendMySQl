@@ -38,10 +38,9 @@ func NewUserLoginStorageGateway(db *sql.DB) UserStorage {
 //loginUserDB comment generic
 func (s *UserService) loginUserDB(p *users.LoginUser) (*users.User, error) {
 	var user users.User
-	// p.Password, _ = storage.EncryptPassword(p.Password)
 	var passwordUser string
-	query := "SELECT idUser, document_id, first_name, last_name, email, password, phone, address, photo, created_at, type_id, date_birth, rh, idSede, is_active FROM Users WHERE email = ?"
-	err := s.db.QueryRow(query, p.Email).Scan(&user.ID, &user.DocumentID, &user.FirstName, &user.LastName, &user.Email, &passwordUser, &user.Phone, &user.Address, &user.Photo, &user.CreatedAt, &user.TypeID, &user.DateBirth, &user.Rh, &user.IDSede, &user.IsActive)
+	query := "SELECT Users.idUser, Users.document_id, Users.first_name, Users.last_name, Users.email, Users.password, Users.phone, Users.address, Users.photo, Users.created_at, Users.type_id, Users.date_birth, Users.rh, Users.idSede, Users.is_active, Sede.name_sede FROM Users INNER JOIN Sede ON Sede.idSede = Users.idSede WHERE email = ?"
+	err := s.db.QueryRow(query, p.Email).Scan(&user.ID, &user.DocumentID, &user.FirstName, &user.LastName, &user.Email, &passwordUser, &user.Phone, &user.Address, &user.Photo, &user.CreatedAt, &user.TypeID, &user.DateBirth, &user.Rh, &user.IDSede, &user.IsActive, &user.NameSede)
 
 	if err != nil {
 		log.Printf("cannot fetch user email ")
