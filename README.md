@@ -1,12 +1,13 @@
 ### Good URL examples
 * Login of users:
     * POST {{Ruta}}/login
-    Request body:
+    
+    * Request body:
     {
       "email": "adminsige@gmail.com",
       "password": "11223344"
     }
-    Response body:
+    * Response body:
     {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGVsbGlkb3MiOiJTSUdFIiwiZW1haWwiOiJhZG1pbnNpZ2VAZ21haWwuY29tIiwiZXhwIjoxNjEyMDM5NDYzLCJmZWNoYV9uYWNpbWllbnRvIjoiMDAwMC0wMC0wMCIsIm5vbWJyZSI6IkFkbWluIn0.etd-lUbx02zNK1IWLDf0keLMv7co1fxHC0YJIAfsmgY"
     }
