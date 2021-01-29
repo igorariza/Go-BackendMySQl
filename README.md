@@ -1,5 +1,5 @@
 ### Good URL examples
-* Login of users:
+## Login of users:
     * POST {{Ruta}}/login
     
     * Request body:
