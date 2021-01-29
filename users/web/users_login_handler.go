@@ -60,7 +60,7 @@ func (s *LoginUserHTTPService) LoginUsersHandler(w http.ResponseWriter, r *http.
 		Token: jwtKey,
 	}
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(resp)
 
 	//Grabacion de cookie en el lado Usuario
