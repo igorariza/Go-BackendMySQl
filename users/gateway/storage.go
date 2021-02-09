@@ -6,18 +6,18 @@ import (
 	"time"
 
 	"github.com/igorariza/Go-BackendMySQl/internal/storage"
-	users "github.com/igorariza/Go-BackendMySQl/users/models"
+	usr "github.com/igorariza/Go-BackendMySQl/users/models"
 	"golang.org/x/crypto/bcrypt"
 )
 
 //UserStorage interface rutas
 type UserStorage interface {
-	createUserDB(p *users.CreateUserCMD) (*users.User, error)
-	getUsersDB() []*users.User
-	getUserByIDBD(id int64) (*users.User, error)
-	getUserByEmailBD(email string) (*users.User, error)
+	createUserDB(p *usr.CreateUserCMD) (*usr.User, error)
+	getUsersDB() []*usr.User
+	getUserByIDBD(id int64) (*usr.User, error)
+	getUserByEmailBD(email string) (*usr.User, error)
 
-	loginUserDB(p *users.LoginUser) (*users.User, error)
+	loginUserDB(p *usr.LoginUser) (*usr.User, error)
 }
 
 //UserService db mysql sql.DB
@@ -36,8 +36,8 @@ func NewUserLoginStorageGateway(db *sql.DB) UserStorage {
 }
 
 //loginUserDB comment generic
-func (s *UserService) loginUserDB(p *users.LoginUser) (*users.User, error) {
-	var user users.User
+func (s *UserService) loginUserDB(p *usr.LoginUser) (*usr.User, error) {
+	var user usr.User
 	var passwordUser string
 	query := "SELECT Users.idUser, Users.document_id, Users.first_name, Users.last_name, Users.email, Users.password, Users.phone, Users.address, Users.photo, Users.created_at, Users.type_id, Users.date_birth, Users.rh, Users.idSede, Users.is_active, Sede.name_sede FROM Users INNER JOIN Sede ON Sede.idSede = Users.idSede WHERE email = ?"
 	err := s.db.QueryRow(query, p.Email).Scan(&user.ID, &user.DocumentID, &user.FirstName, &user.LastName, &user.Email, &passwordUser, &user.Phone, &user.Address, &user.Photo, &user.CreatedAt, &user.TypeID, &user.DateBirth, &user.Rh, &user.IDSede, &user.IsActive, &user.NameSede)
@@ -59,7 +59,7 @@ func (s *UserService) loginUserDB(p *users.LoginUser) (*users.User, error) {
 }
 
 //createUserDB comment generic
-func (s *UserService) createUserDB(p *users.CreateUserCMD) (*users.User, error) {
+func (s *UserService) createUserDB(p *usr.CreateUserCMD) (*usr.User, error) {
 	p.Password, _ = storage.EncryptPassword(p.Password)
 	p.CreatedAt = time.Now().String()
 
@@ -73,7 +73,7 @@ func (s *UserService) createUserDB(p *users.CreateUserCMD) (*users.User, error) 
 
 	id, err := res.LastInsertId()
 
-	return &users.User{
+	return &usr.User{
 		ID:         id,
 		DocumentID: p.DocumentID,
 		FirstName:  p.FirstName,
@@ -93,7 +93,7 @@ func (s *UserService) createUserDB(p *users.CreateUserCMD) (*users.User, error) 
 }
 
 //getUsersDB comment generic
-func (s *UserService) getUsersDB() []*users.User {
+func (s *UserService) getUsersDB() []*usr.User {
 	rows, err := s.db.Query("select _id, created, name, last_name, email, from Users")
 
 	if err != nil {
@@ -101,9 +101,9 @@ func (s *UserService) getUsersDB() []*users.User {
 		return nil
 	}
 	defer rows.Close()
-	var p []*users.User
+	var p []*usr.User
 	for rows.Next() {
-		var user users.User
+		var user usr.User
 		err := rows.Scan(&user.ID, &user.FirstName, &user.LastName, &user.Address, &user.Phone,
 			&user.Email, &user.CreatedAt)
 		if err != nil {
@@ -117,8 +117,8 @@ func (s *UserService) getUsersDB() []*users.User {
 }
 
 //getUserByEmailBD comment generic
-func (s *UserService) getUserByIDBD(id int64) (*users.User, error) {
-	var user users.User
+func (s *UserService) getUserByIDBD(id int64) (*usr.User, error) {
+	var user usr.User
 	err := s.db.QueryRow(`select id, first_name, last_name, address, phone, email, created_at from users
 		where id = ?`, id).Scan(&user.ID, &user.FirstName, &user.LastName, &user.Address, &user.Phone,
 		&user.Email, &user.CreatedAt)
@@ -132,8 +132,8 @@ func (s *UserService) getUserByIDBD(id int64) (*users.User, error) {
 }
 
 //getUserByEmailBD comment generic
-func (s *UserService) getUserByEmailBD(email string) (*users.User, error) {
-	var user users.User
+func (s *UserService) getUserByEmailBD(email string) (*usr.User, error) {
+	var user usr.User
 	var emailUser string
 	query := "SELECT email FROM Users WHERE email = ?"
 	err := s.db.QueryRow(query, email).Scan(&emailUser)
