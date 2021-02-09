@@ -6,9 +6,9 @@
       "email": "adminsige@gmail.com",
       "password": "11223344"
     }
-    Response body:
+    * Response body:
     {
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGVsbGlkb3MiOiJTSUdFIiwiZW1haWwiOiJhZG1pbnNpZ2VAZ21haWwuY29tIiwiZXhwIjoxNjEyMDM5NDYzLCJmZWNoYV9uYWNpbWllbnRvIjoiMDAwMC0wMC0wMCIsIm5vbWJyZSI6IkFkbWluIn0.etd-lUbx02zNK1IWLDf0keLMv7co1fxHC0YJIAfsmgY"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
     }
     {
         "success": true,
@@ -150,4 +150,3 @@ Request body:
             "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ante ut augue scelerisque ornare. Aliquam tempus rhoncus quam vel luctus. Sed scelerisque fermentum fringilla. Suspendisse tincidunt nisl a metus feugiat vitae vestibulum enim vulputate. Quisque vehicula dictum elit, vitae cursus libero auctor sed. Vestibulum fermentum elementum nunc. Proin aliquam erat in turpis vehicula sit amet tristique lorem blandit. Nam augue est, bibendum et ultrices non, interdum in est. Quisque gravida orci lobortis... "
         }
     ]
-http://stackoverflow.com -->

@@ -9,7 +9,7 @@ import (
 	jwt "github.com/igorariza/Go-BackendMySQl/internal/jwt"
 	"github.com/igorariza/Go-BackendMySQl/internal/web"
 	users "github.com/igorariza/Go-BackendMySQl/users/gateway"
-	models "github.com/igorariza/Go-BackendMySQl/users/models"
+	usr "github.com/igorariza/Go-BackendMySQl/users/models"
 )
 
 //LoginUserHTTPService comment generic
@@ -28,7 +28,7 @@ func NewUserLoginHTTPService(db *sql.DB) *LoginUserHTTPService {
 func (s *LoginUserHTTPService) LoginUsersHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("content-type", "application/json")
 
-	var cmd models.LoginUser
+	var cmd usr.LoginUser
 	body := r.Body
 	defer body.Close()
 	err := json.NewDecoder(body).Decode(&cmd)
@@ -56,11 +56,11 @@ func (s *LoginUserHTTPService) LoginUsersHandler(w http.ResponseWriter, r *http.
 		http.Error(w, "Ocurrió un error al intentar general el Token correspondiente "+err.Error(), 400)
 		return
 	}
-	resp := models.RespuestaLogin{
+	resp := usr.RespuestaLogin{
 		Token: jwtKey,
 	}
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
+	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(resp)
 
 	//Grabacion de cookie en el lado Usuario

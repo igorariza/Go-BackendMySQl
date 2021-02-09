@@ -9,6 +9,9 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+var bdMysqlCN = ConnectToDB()
+
+//ConnectToDB func connect generic comment
 func ConnectToDB() *sql.DB {
 	dbName := os.Getenv("DB_NAME")
 	server := os.Getenv("DB_HOST")
@@ -25,8 +28,18 @@ func ConnectToDB() *sql.DB {
 		log.Fatalf("Failed to connect to DB via %s: %v", connURL, err)
 	}
 	if err = db.Ping(); err != nil {
-		log.Fatalf("Failed to ping DB via %s: %v", connURL, err)
+		// log.Fatalf("Failed to ping DB via %s: %v", connURL, err.Error())
+		log.Println("Failed to ping a BD" + err.Error())
 	}
 	log.Println("Connected to DB")
 	return db
+}
+
+//ChequeoConnection comment generic
+func ChequeoConnection() int {
+	err := bdMysqlCN.Ping()
+	if err != nil {
+		return 0
+	}
+	return 1
 }

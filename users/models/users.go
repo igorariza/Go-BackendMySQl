@@ -45,3 +45,10 @@ type LoginUser struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
+
+//ChangePasswordUser comment generic
+type ChangePasswordUser struct {
+	Email       string `json:"email"`
+	Password    string `json:"password"`
+	NewPassword string `json:"new_password"`
+}
