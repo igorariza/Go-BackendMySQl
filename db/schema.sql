@@ -49,7 +49,7 @@ VALUES
 
 -- SELECT * FROM backendSigeGo.Sede;
 INSERT INTO backendSigeGo.Sede
-	(`idInstitution`, `code_sede`, `name`)
+	(`idInstitution`, `code_sede`, `name_sede`)
 VALUES
 (1,'17636400001502','MANUELA BELTRAN');
 
