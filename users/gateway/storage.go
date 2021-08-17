@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/igorariza/Go-BackendMySQl/internal/storage"
+	sto "github.com/igorariza/Go-BackendMySQl/internal/storage"
 	usr "github.com/igorariza/Go-BackendMySQl/users/models"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -16,7 +16,6 @@ type UserStorage interface {
 	getUsersDB() []*usr.User
 	getUserByIDBD(id int64) (*usr.User, error)
 	getUserByEmailBD(email string) (*usr.User, error)
-
 	loginUserDB(p *usr.LoginUser) (*usr.User, error)
 }
 
@@ -60,11 +59,19 @@ func (s *UserService) loginUserDB(p *usr.LoginUser) (*usr.User, error) {
 
 //createUserDB comment generic
 func (s *UserService) createUserDB(p *usr.CreateUserCMD) (*usr.User, error) {
-	p.Password, _ = storage.EncryptPassword(p.Password)
+
+	//existe, _, err := sto.ChequeoYaExisteUsuario(p.DocumentID)
+
+	// if existe != 0 {
+	// 	log.Printf("Usuario ya existe, " + strconv.Itoa(existe))
+	// 	return nil, err
+	// }
+	//log.Printf("Usuario ya existe, " + strconv.Itoa(existe))
+	p.Password, _ = sto.EncryptPassword(p.Password)
 	p.CreatedAt = time.Now().String()
 
-	res, err := s.db.Exec("insert into Users (document_id, first_name, last_name, email, password, phone, address, photo, created_at, type_id, date_birth, rh, idSede, is_active) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-		p.DocumentID, p.FirstName, p.LastName, p.Email, p.Password, p.Phone, p.Address, p.Photo, p.CreatedAt, p.TypeID, p.DateBirth, p.Rh, p.IDSede, p.IsActive)
+	res, err := s.db.Exec("insert into users (document_id, first_name, last_name, email, password, phone, address, photo, created_at, type_id, date_birth, last_access, rh, idSede, is_active) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+		p.DocumentID, p.FirstName, p.LastName, p.Email, p.Password, p.Phone, p.Address, p.Photo, p.CreatedAt, p.TypeID, p.DateBirth, p.LastAccess, p.Rh, p.IDSede, p.IsActive)
 
 	if err != nil {
 		log.Printf("cannot save the user, %s", err.Error())

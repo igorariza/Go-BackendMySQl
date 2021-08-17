@@ -1,6 +1,7 @@
-package storage
+package internal
 
 import (
+	"os"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
@@ -10,13 +11,14 @@ import (
 /*GeneroJWT genera el encriptado con JWT */
 func GeneroJWT(t users.User) (string, error) {
 
-	miClave := []byte(t.Email)
+	miClave := []byte(os.Getenv("MY_CLAVE"))
 
 	payload := jwt.MapClaims{
 		"email":            t.Email,
 		"nombre":           t.FirstName,
 		"apellidos":        t.LastName,
 		"fecha_nacimiento": t.DateBirth,
+		"_id":              t.ID,
 		"exp":              time.Now().Add(time.Hour * 24).Unix(),
 	}
 
