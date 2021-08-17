@@ -3,8 +3,7 @@ CREATE TABLE `Institution` (
 	`dane_id`	VARCHAR(100),	
 	`name`	VARCHAR(80),	
 	`nit_id`	VARCHAR(80),		
-PRIMARY KEY (`idInstitution`) ) ENGINE=InnoDB  
-DEFAULT CHARSET=utf8mb4;
+PRIMARY KEY (`idInstitution`) ) ENGINE=InnoDB;
 
 CREATE TABLE `Sede` ( 				
 	`idSede`	INT	AUTO_INCREMENT,
@@ -13,8 +12,7 @@ CREATE TABLE `Sede` (
 	`name_sede`	VARCHAR(80),	
 PRIMARY KEY (`idSede`),
 FOREIGN KEY (`idInstitution`) 
-REFERENCES Institution(`idInstitution`)) ENGINE=InnoDB  
-DEFAULT CHARSET=utf8mb4;			
+REFERENCES Institution(`idInstitution`)) ENGINE=InnoDB;		
 
 CREATE TABLE `Users` ( 	
 	`idUser`	INT	AUTO_INCREMENT,
@@ -35,8 +33,7 @@ CREATE TABLE `Users` (
 	`is_active`	BOOLEAN,		
 PRIMARY KEY (`idUser`),
 FOREIGN KEY (`idSede`) 
-REFERENCES Sede(idSede)) ENGINE=InnoDB AUTO_INCREMENT=3 
-DEFAULT CHARSET=utf8mb4;
+REFERENCES Sede(idSede)) AUTO_INCREMENT=3;
 
 -- INSERT ----
 
@@ -48,7 +45,7 @@ VALUES
 'IE CENTRAL DE BACHILLERATO INTEGRADO');
 
 -- SELECT * FROM backendSigeGo.Sede;
-INSERT INTO backendSigeGo.Sede
+INSERT INTO Sede
 	(`idInstitution`, `code_sede`, `name_sede`)
 VALUES
 (1,'17636400001502','MANUELA BELTRAN');
