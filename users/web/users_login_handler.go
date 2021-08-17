@@ -44,7 +44,7 @@ func (s *LoginUserHTTPService) LoginUsersHandler(w http.ResponseWriter, r *http.
 
 	user, err := s.gtw.LoginUser(&cmd)
 	if err != nil {
-		http.Error(w, "Usuario y/o Contraseña inválidos ", 400)
+		http.Error(w, "Usuario y/o Contraseña inválidosss ", 400)
 		return
 	}
 	if user == nil {

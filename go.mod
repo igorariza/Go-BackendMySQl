@@ -5,7 +5,7 @@ go 1.15
 require (
 	github.com/aws/aws-sdk-go v1.40.20 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/go-chi/chi v1.5.4
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/google/go-cmp v0.5.6 // indirect

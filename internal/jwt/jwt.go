@@ -17,6 +17,7 @@ func GeneroJWT(t users.User) (string, error) {
 		"nombre":           t.FirstName,
 		"apellidos":        t.LastName,
 		"fecha_nacimiento": t.DateBirth,
+		"_id":              t.ID,
 		"exp":              time.Now().Add(time.Hour * 24).Unix(),
 	}
 

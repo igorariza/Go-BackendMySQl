@@ -8,7 +8,8 @@ import (
 
 func routesCreateUser(services *users.UserCreateHTTPService, r *chi.Mux) {
 	// r.Get("/users", services.GetUsersHandler)
-	r.Post("/users", md.ChequeoBD(md.ValidoJWT(services.CreateUsersHandler)))
+	//r.Post("/users", md.ChequeoBD(md.ValidoJWT(services.CreateUsersHandler)))
+	//r.Post("/users", md.ChequeoBD(services.CreateUsersHandler))
 	r.Get("/users/{userID}", md.ChequeoBD(services.GetUsersByIDHandler))
 }
 func routesLoginUser(services *users.LoginUserHTTPService, r *chi.Mux) {
