@@ -1,6 +1,7 @@
 module github.com/igorariza/Go-BackendMySQl
 
-go 1.16
+// +heroku goVersion go1.15
+go 1.15
 
 require (
 	github.com/aws/aws-sdk-go v1.40.20 // indirect
