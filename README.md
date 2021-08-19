@@ -1,3 +1,41 @@
+# Go RESTful API
+
+[![GoDoc](https://godoc.org/github.com/qiangxue/go-rest-api?status.png)](http://godoc.org/github.com/qiangxue/go-rest-api)
+
+
+This starter kit is designed to get you up and running with a project structure optimized for developing
+RESTful API services in Go. It promotes the best practices that follow the [SOLID principles](https://en.wikipedia.org/wiki/SOLID)
+and [clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html). 
+It encourages writing clean and idiomatic Go code. 
+
+The kit provides the following features right out of the box:
+
+* RESTful endpoints in the widely accepted format
+* Standard CRUD operations of a database table
+* JWT-based authentication
+* Environment dependent application configuration management
+* Structured logging with contextual information
+* Error handling with proper error response generation
+* Database migration
+* Data validation
+* Full test coverage
+* Live reloading during development
+ 
+The kit uses the following Go packages which can be easily replaced with your own favorite ones
+since their usages are mostly localized and abstracted. 
+
+<!-- * Routing: [ozzo-routing](https://github.com/go-ozzo/ozzo-routing)
+* Database access: [ozzo-dbx](https://github.com/go-ozzo/ozzo-dbx)
+* Database migration: [golang-migrate](https://github.com/golang-migrate/migrate)
+* Data validation: [ozzo-validation](https://github.com/go-ozzo/ozzo-validation)
+* Logging: [zap](https://github.com/uber-go/zap) -->
+* JWT: [jwt-go](https://github.com/dgrijalva/jwt-go)
+
+## Getting Started
+
+If this is your first time encountering Go, please follow [the instructions](https://golang.org/doc/install) to
+install Go on your computer. The kit requires **Go 1.13 or above**.
+
 ### Good URL examples
 * Login of users:
     * POST {{Ruta}}/login
