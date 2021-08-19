@@ -1,20 +1,20 @@
-CREATE TABLE `Institution` ( 	
+CREATE TABLE `institution` ( 	
 	`idInstitution`	INT	AUTO_INCREMENT,
 	`dane_id`	VARCHAR(100),	
 	`name`	VARCHAR(80),	
 	`nit_id`	VARCHAR(80),		
 PRIMARY KEY (`idInstitution`) ) ENGINE=InnoDB;
 
-CREATE TABLE `Sede` ( 				
+CREATE TABLE `sede` ( 				
 	`idSede`	INT	AUTO_INCREMENT,
   `idInstitution`	INT	, -- relationship Institution
 	`code_sede`	VARCHAR(100),	
 	`name_sede`	VARCHAR(80),	
 PRIMARY KEY (`idSede`),
 FOREIGN KEY (`idInstitution`) 
-REFERENCES Institution(`idInstitution`)) ENGINE=InnoDB;		
+REFERENCES institution(`idInstitution`)) ENGINE=InnoDB;		
 
-CREATE TABLE `Users` ( 	
+CREATE TABLE `users` ( 	
 	`idUser`	INT	AUTO_INCREMENT,
 	`document_id`	VARCHAR(100),	
 	`first_name`	VARCHAR(80),	
@@ -24,28 +24,28 @@ CREATE TABLE `Users` (
 	`phone`	VARCHAR(20),		
 	`address`	VARCHAR(20),		
 	`photo`	VARCHAR(1000),		
-	`created_at`	VARCHAR(50),		
-	`type_id`	INT,		
-	`date_birth`	DATE,		
-	`last_access`	DATE,		
+	`created_at`	VARCHAR(100),		
+	`type_id`	VARCHAR(2),		
+	`date_birth`	VARCHAR(100),		
+	`last_access`	VARCHAR(100),		
 	`rh`	VARCHAR(2),		
-	`idSede`	INT, -- relationship Sede		
-	`is_active`	BOOLEAN,		
+	`idSede`	VARCHAR(2), -- relationship Sede		
+	`is_active`	VARCHAR(2),		
 PRIMARY KEY (`idUser`),
 FOREIGN KEY (`idSede`) 
-REFERENCES Sede(idSede)) AUTO_INCREMENT=3;
+REFERENCES sede(idSede)) AUTO_INCREMENT=3;
 
 -- INSERT ----
 
 -- SELECT * FROM backendSigeGo.Institution;
-INSERT INTO Institution
+INSERT INTO institution
 	(`dane_id`,	`name`)
 VALUES
 ('176364000015',
 'IE CENTRAL DE BACHILLERATO INTEGRADO');
 
 -- SELECT * FROM backendSigeGo.Sede;
-INSERT INTO Sede
+INSERT INTO sede
 	(`idInstitution`, `code_sede`, `name_sede`)
 VALUES
 (1,'17636400001502','MANUELA BELTRAN');
