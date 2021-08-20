@@ -38,7 +38,7 @@ func NewUserLoginStorageGateway(db *sql.DB) UserStorage {
 func (s *UserService) loginUserDB(p *usr.LoginUser) (*usr.User, error) {
 	var user usr.User
 	var passwordUser string
-	query := "SELECT Users.idUser, Users.document_id, Users.first_name, Users.last_name, Users.email, Users.password, Users.phone, Users.address, Users.photo, Users.created_at, Users.type_id, Users.date_birth, Users.rh, Users.idSede, Users.is_active, Sede.name_sede FROM Users INNER JOIN Sede ON Sede.idSede = Users.idSede WHERE email = ?"
+	query := "SELECT users.idUser, users.document_id, users.first_name, users.last_name, users.email, users.password, users.phone, users.address, users.photo, users.created_at, users.type_id, users.date_birth, users.rh, users.idSede, users.is_active, sede.name_sede FROM users INNER JOIN sede ON sede.idSede = users.idSede WHERE email = ?"
 	err := s.db.QueryRow(query, p.Email).Scan(&user.ID, &user.DocumentID, &user.FirstName, &user.LastName, &user.Email, &passwordUser, &user.Phone, &user.Address, &user.Photo, &user.CreatedAt, &user.TypeID, &user.DateBirth, &user.Rh, &user.IDSede, &user.IsActive, &user.NameSede)
 
 	if err != nil {
